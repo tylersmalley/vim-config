@@ -22,6 +22,7 @@ Bundle 'gmarik/vundle'
 
 Bundle 'tpope/vim-surround'
 Bundle 'YankRing.vim'
+Bundle 'scrooloose/syntastic'
 "Bundle 'tpope/vim-fugitive'   " Git
 
 """ Command-T
@@ -74,7 +75,7 @@ set background=dark             " We are using dark background in vim
 set title                       " show title in console title bar
 set wildmenu                    " Menu completion in command mode on <Tab>
 set wildmode=full               " <Tab> cycles between all matching choices.
-set colorcolumn=100
+set colorcolumn=80
 
 " don't bell or blink
 set noerrorbells
@@ -198,4 +199,4 @@ au FileType python set foldmethod=indent
 " Do not fold internal statements.
 au FileType python set foldnestmax=2
 
-
+au FileType javascript setlocal tabstop=2 softtabstop=2 tabstop=2 shiftwidth=2
