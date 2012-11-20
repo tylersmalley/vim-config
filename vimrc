@@ -19,10 +19,10 @@ call vundle#rc()
 " let Vundle manage Vundle
 " required!
 Bundle 'gmarik/vundle'
-
 Bundle 'tpope/vim-surround'
-Bundle 'YankRing.vim'
-"Bundle 'tpope/vim-fugitive'   " Git
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-rails.git'
+Bundle 'scrooloose/syntastic'
 
 """ Command-T
 " Don't forget to compile C extension
@@ -31,7 +31,6 @@ Bundle 'YankRing.vim'
 "  $ make
 Bundle 'git://git.wincent.com/command-t.git'
 
-Bundle 'git://github.com/tpope/vim-rails.git'
 
 filetype plugin indent on     " required!
 
@@ -65,7 +64,7 @@ map <c-h> <c-w>h
 " General VIM Settings
 " ==========================================================
 
-syntax on                       " syntax highlighing
+syntax enable                   " syntax highlighing
 filetype on                     " try to detect filetypes
 filetype plugin indent on       " enable loading indent file for filetype
 set number                      " Display line numbers
@@ -74,14 +73,14 @@ set background=dark             " We are using dark background in vim
 set title                       " show title in console title bar
 set wildmenu                    " Menu completion in command mode on <Tab>
 set wildmode=full               " <Tab> cycles between all matching choices.
-set colorcolumn=100
+set colorcolumn=80
 
 " don't bell or blink
 set noerrorbells
 set vb t_vb=
 
 " Ignore these files when completing
-set wildignore+=*.git,*.pyc
+set wildignore+=*.git,*.pyc,node_modules/*
 
 set grepprg=ack                 " replace the default grep program with ack
 
@@ -103,14 +102,15 @@ set nowrap                      " don't wrap text
 set linebreak                   " don't wrap textin the middle of a word
 set autoindent                  " always set autoindenting on
 set smartindent                 " use smart indent if there is no indent file
-set tabstop=4                   " <tab> inserts 4 spaces
-set shiftwidth=4                " but an indent level is 2 spaces wide.
-set softtabstop=4               " <BS> over an autoindent deletes both spaces.
+set tabstop=2                   " <tab> inserts 4 spaces
+set shiftwidth=2                " but an indent level is 2 spaces wide.
+set softtabstop=2               " <BS> over an autoindent deletes both spaces.
 set expandtab                   " Use spaces, not tabs, for autoindent/tab key.
 set shiftround                  " rounds indent to a multiple of shiftwidth
 set matchpairs+=<:>             " show matching <> (html mainly) as well
 set foldmethod=indent           " allow us to fold on indents
 set foldlevel=99                " don't fold by default
+set clipboard+=unnamed
 
 """" Reading/Writing
 set encoding=utf-8
@@ -147,7 +147,7 @@ let g:Powerline_symbols = 'fancy'
 
 syntax enable
 set background=dark
-colorscheme ir_black
+colorscheme solarized
 
 " set the backup dir to declutter working directory.
 " two ending slashes means, full path to the actual filename
@@ -165,6 +165,8 @@ set undodir=~/.vim/undo/
 " ===========================================================
 " FileType specific changes
 " ============================================================
+""" Ruby
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Treat JSON files like JavaScript
 au BufNewFile,BufRead *.json set ft=javascript
@@ -199,3 +201,7 @@ au FileType python set foldmethod=indent
 au FileType python set foldnestmax=2
 
 
+" ===========================================================
+" Environment specific changes
+" ============================================================
+"set term=linux              " fixes arrows in iTerm
