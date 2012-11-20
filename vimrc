@@ -200,8 +200,8 @@ au FileType python set foldmethod=indent
 " Do not fold internal statements.
 au FileType python set foldnestmax=2
 
-
 " ===========================================================
 " Environment specific changes
 " ============================================================
 "set term=linux              " fixes arrows in iTerm
+au FileType javascript setlocal tabstop=2 softtabstop=2 tabstop=2 shiftwidth=2
